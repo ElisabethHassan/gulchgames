@@ -1,0 +1,38 @@
+.workouts {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    justify-content: center;
+  }
+  
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+
+  /* HOME END, PREVIEW CARD CSS */
+
+  .previewcard {
+    width: 300px;
+    height: 100px;
+    background-color: #D9D9D9;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+  }
+  
+  .gif {
+    width: 70px;
+    height: 70px;
+    background-color: #F5F5F5;
+    border-radius: .7rem;
+    margin: 1rem;
+  }
+  
+  .groupText p{
+    margin-top: -1rem;
+  }
