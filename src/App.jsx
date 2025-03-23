@@ -1,21 +1,37 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { FormProvider } from "./context/FormContext";
+import ConfirmSelection from "./pages/ConfirmSelection";
+import Participants from "./pages/Participants";
+// import reactLogo from './assets/react.svg'
+// import viteLogo from '/vite.svg'
 import './App.css'
 import Home from './pages/Home'
-import MovementCard from './components/MovementCard'
-import WorkoutCard from './components/WorkoutCard'
+// import MovementCard from './components/MovementCard'
+// import WorkoutCard from './components/WorkoutCard'
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [select, setSelection] = useState (0)
+  // const [count, setCount] = useState(0)
+  // const [select, setSelection] = useState (0)
 
 
   return (
     <>
   
+  <FormProvider>
+      <Router>
+        {/* <Navbar /> */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          {/* <Route path="/workout" element={<WorkoutPage />} /> */}
+          <Route path="/participants" element={<Participants/>} />
+          <Route path="/confirm" element={<ConfirmSelection />} />
+          {/* <Route path="/final" element={<FinalVideoPage />} /> */}
+        </Routes>
+      </Router>
+    </FormProvider>
 
-    <Home></Home>
+    {/* <Home></Home> */}
     {/* <MovementCard workout="Run Laps" descriptor="Full Body"></MovementCard> */}
 
     {/* <div className='wrapper'>
