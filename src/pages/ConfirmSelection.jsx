@@ -7,9 +7,12 @@ export default function ConfirmSelection() {
   const navigate = useNavigate();
 
   const handleConfirm = () => {
-    navigate("/video"); // Move to the video player page
+    navigate("/start"); // Move to the all set page
   };
-
+  // const handleConfirm = () => {
+  //   navigate("/video"); // Move to the video player page
+  // };
+  
   return (
     <div className="wrapper">
       <h1>Confirm Your Selection</h1>

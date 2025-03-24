@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { FormProvider } from "./context/FormContext";
 import ConfirmSelection from "./pages/ConfirmSelection";
 import Participants from "./pages/Participants";
+import Done from './pages/Done';
+
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
 import './App.css'
@@ -26,6 +28,7 @@ function App() {
           {/* <Route path="/workout" element={<WorkoutPage />} /> */}
           <Route path="/participants" element={<Participants/>} />
           <Route path="/confirm" element={<ConfirmSelection />} />
+          <Route path="/start" element={<Done/>} />
           {/* <Route path="/final" element={<FinalVideoPage />} /> */}
         </Routes>
       </Router>
