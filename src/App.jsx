@@ -5,6 +5,8 @@ import ConfirmSelection from "./pages/ConfirmSelection";
 import Participants from "./pages/Participants";
 import Done from './pages/Done';
 import PreviewWorkout from './pages/PreviewWorkouts';
+import VideoPlayer from "./pages/VideoPlayer"; // Import the Video Player page
+
 
 // import reactLogo from './assets/react.svg'
 // import viteLogo from '/vite.svg'
@@ -31,6 +33,7 @@ function App() {
           <Route path="/confirm" element={<ConfirmSelection />} />
           <Route path="/start" element={<Done/>} />
           <Route path="/previewWorkouts" element={<PreviewWorkout/>}/>
+          <Route path="/video" element={<VideoPlayer />} />
           {/* <Route path="/final" element={<FinalVideoPage />} /> */}
         </Routes>
       </Router>

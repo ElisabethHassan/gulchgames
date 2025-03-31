@@ -16,6 +16,11 @@ export default function Done() {
 //     }
 //   }, [timeLeft, navigate]);
 
+    const videos = {
+        "HIIT Tabata": { wall: "../videos/hiit_wall.mov", floor: "../videos/hiit_floor.mov" },
+        "Warmup": { wall: "/videos/warmup_wall.mp4", floor: "/videos/warmup_floor.mp4" },
+    };
+
 
     useEffect(() => {
         if (timeLeft > 0) {
@@ -37,15 +42,31 @@ export default function Done() {
                 "WallProjector",
                 "width=1920,height=1080,left=0,top=0"
             );
-            wallWindow.location = `/video?videoSrc=${workoutVideos.wall}&screenType=wall`;
+        
+            if (wallWindow) {
+                setTimeout(() => {
+                    wallWindow.location = `/video?videoSrc=${workoutVideos.wall}&screenType=wall`;
+                }, 500); // Delay to allow the window to initialize
+            } else {
+                console.error("Popup blocked! Allow popups for this site.");
+            }
+
+
+
+            // const wallWindow = window.open(
+            //     "/video",
+            //     "WallProjector",
+            //     "width=1920,height=1080,left=0,top=0"
+            // );
+            // wallWindow.location = `/video?videoSrc=${workoutVideos.wall}&screenType=wall`;
 
             // Open video for floor projector
-            const floorWindow = window.open(
-                "/video",
-                "FloorProjector",
-                "width=1920,height=1080,left=1920,top=0"
-            );
-            floorWindow.location = `/video?videoSrc=${workoutVideos.floor}&screenType=floor`;
+            // const floorWindow = window.open(
+            //     "/video",
+            //     "FloorProjector",
+            //     "width=1920,height=1080,left=1920,top=0"
+            // );
+            // floorWindow.location = `/video?videoSrc=${workoutVideos.floor}&screenType=floor`;
         }
 
         navigate("/"); // Return to home after launching videos
