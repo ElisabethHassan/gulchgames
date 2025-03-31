@@ -11,7 +11,7 @@
   gap: 2rem;
 }
 
-.previewcard {
+/* .previewcard {
   width: 500px;
   height: 200px;
   background-color: #D9D9D9;
@@ -20,9 +20,9 @@
   flex-direction: row;
   align-items: center;
   text-align: left;
-}
+} */
 
-.gif {
+/* .gif {
   width: 70px;
   height: 70px;
   background-color: #F5F5F5;
@@ -32,7 +32,7 @@
 
 .groupText p{
   margin-top: -1rem;
-}
+} */
 
 
 

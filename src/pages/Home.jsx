@@ -26,7 +26,7 @@ export default function Home() {
           </button>
         </div>
 
-        <p>Not sure which one to choose? <a href="#">Preview Workout Programs</a></p>
+        <p>Not sure which one to choose? <a href="/previewWorkouts">Preview Workout Programs</a></p>
       </div>
     </>
   );

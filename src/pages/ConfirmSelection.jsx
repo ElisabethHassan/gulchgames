@@ -1,6 +1,7 @@
 import { useForm } from "../context/FormContext";
 import { useNavigate } from "react-router-dom";
 import WorkoutCard from "../components/WorkoutCard";
+import '../styles/Home.css'
 
 export default function ConfirmSelection() {
   const { formData } = useForm();
@@ -14,9 +15,11 @@ export default function ConfirmSelection() {
   // };
   
   return (
-    <div className="wrapper">
+    <div className="wrapper_confirm">
       <h1>Confirm Your Selection</h1>
-      <p>Review your choices before starting.</p>
+      {/* <p>Review your choices before starting.</p> */}
+
+      <p>You chose the <b>{formData.workoutType} workout</b> with <b>{formData.players}</b> particpants.</p>
 
       {/* Display the selected workout dynamically */}
       <div className="selected-workout">
@@ -30,10 +33,11 @@ export default function ConfirmSelection() {
       </div>
 
       {/* Display number of players */}
-      <p><strong>Players:</strong> {formData.numPlayers}</p>
+      {/* <p><strong>Players:</strong> {formData.players}</p> */}
 
-      <button onClick={handleConfirm}>Confirm & Start Workout</button>
-      <button onClick={() => navigate("/")}>Go Back</button>
+      <button onClick={handleConfirm}>Looks good!</button>
+      <p><b>There's a mistake? </b><a href="/">Go back</a></p>
+      {/* <button onClick={() => navigate("/")}>Go Back</button> */}
     </div>
   );
 }
