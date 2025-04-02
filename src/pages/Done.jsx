@@ -1,26 +1,56 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import '../styles/Home.css'
-
+import { useForm } from "../context/FormContext";
+import '../styles/Home.css';
 
 export default function Done() {
-    const [timeLeft, setTimeLeft] = useState(20); // 20-second countdown
+    const [timeLeft, setTimeLeft] = useState(20);
     const navigate = useNavigate();
-
-//   useEffect(() => {
-//     if (timeLeft > 0) {
-//       const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-//       return () => clearTimeout(timer);
-//     } else {
-//       navigate("/"); // Auto-start workout when timer reaches 0
-//     }
-//   }, [timeLeft, navigate]);
+    const { formData } = useForm();
+    const selectedWorkout = formData.workoutType;
 
     const videos = {
-        "HIIT Tabata": { wall: "../videos/hiit_wall.mov", floor: "../videos/hiit_floor.mov" },
+        "HIIT Tabata": { wall: "/videos/hiit_wall.mp4", floor: "/videos/hiit_floor.mp4" },
         "Warmup": { wall: "/videos/warmup_wall.mp4", floor: "/videos/warmup_floor.mp4" },
     };
 
+    const pauseVideo = () => {
+        const wallWindow = window.open("", "WallProjector"); // Get the wall video window
+        const floorWindow = window.open("", "FloorProjector"); // Get the floor video window
+    
+        // if (wallWindow) wallWindow.postMessage("pause", "*");
+        // if (floorWindow) floorWindow.postMessage("pause", "*");
+
+        if (wallWindow && !wallWindow.closed) {
+            wallWindow.postMessage("pause", "*");
+        } else {
+            console.warn("Window is not open.");
+        }
+        if (floorWindow && !floorWindow.closed) {
+            floorWindow.postMessage("pause", "*");
+        } else {
+            console.warn("Window is not open.");
+        }
+    };
+    
+    const playVideo = () => {
+        const wallWindow = window.open("", "WallProjector");
+        const floorWindow = window.open("", "FloorProjector");
+
+        if (wallWindow && !wallWindow.closed) {
+            wallWindow.postMessage("play", "*");
+        } else {
+            console.warn("Window is not open.");
+        }
+        if (floorWindow && !floorWindow.closed) {
+            floorWindow.postMessage("play", "*");
+        } else {
+            console.warn("Window is not open.");
+        }
+    
+        // if (wallWindow) wallWindow.postMessage("play", "*");
+        // if (floorWindow) floorWindow.postMessage("play", "*");
+    };
 
     useEffect(() => {
         if (timeLeft > 0) {
@@ -31,64 +61,64 @@ export default function Done() {
         }
     }, [timeLeft]);
 
-
     const startWorkout = () => {
         const workoutVideos = videos[selectedWorkout];
+        // const workoutVideos = videos["HIIT Tabata"];
+
+        console.log("Selected workout:", selectedWorkout);
+        console.log("Workout videos:", videos);
+        console.log("WorkoutVideos for selected:", workoutVideos);
+        console.log("Opening video:", workoutVideos ? workoutVideos.wall : "No video found!");
 
         if (workoutVideos) {
-            // Open video for wall projector
-            const wallWindow = window.open(
-                "/video",
-                "WallProjector",
-                "width=1920,height=1080,left=0,top=0"
-            );
+            if (!window.wallWindow || window.wallWindow.closed) {
+                window.wallWindow = window.open(
+                    `/video?videoSrc=${workoutVideos.wall}&screenType=wall`,
+                    "WallProjector",
+                    "width=1920,height=1080,left=0,top=0"
+                );
+            }
         
-            if (wallWindow) {
-                setTimeout(() => {
-                    wallWindow.location = `/video?videoSrc=${workoutVideos.wall}&screenType=wall`;
-                }, 500); // Delay to allow the window to initialize
-            } else {
-                console.error("Popup blocked! Allow popups for this site.");
+            if (!window.floorWindow || window.floorWindow.closed) {
+                window.floorWindow = window.open(
+                    `/video?videoSrc=${workoutVideos.floor}&screenType=floor`,
+                    "FloorProjector",
+                    "width=1920,height=1080,left=1920,top=0"
+                );
             }
 
 
-
-            // const wallWindow = window.open(
-            //     "/video",
+            // window.open(
+            //     `/video?videoSrc=${workoutVideos.wall}&screenType=wall`,
             //     "WallProjector",
             //     "width=1920,height=1080,left=0,top=0"
             // );
-            // wallWindow.location = `/video?videoSrc=${workoutVideos.wall}&screenType=wall`;
 
-            // Open video for floor projector
-            // const floorWindow = window.open(
-            //     "/video",
+            // window.open(
+            //     `/video?videoSrc=${workoutVideos.floor}&screenType=floor`,
             //     "FloorProjector",
             //     "width=1920,height=1080,left=1920,top=0"
             // );
-            // floorWindow.location = `/video?videoSrc=${workoutVideos.floor}&screenType=floor`;
+        } else {
+            console.error("Workout video not found!");
         }
 
-        navigate("/"); // Return to home after launching videos
+        // navigate("/");
     };
 
     return (    
         <div className="wrapper_done">
             <h1>All set!</h1>
             <p>Your workout will begin in 20 seconds. <br/>Get to a starting bubble before the timer runs out.</p>
-            {/* <h2>Starting in: {timeLeft} seconds</h2> */}
-            {/* <h2>Starting in:</h2> */}
             <h2 className="timeleft">{timeLeft}</h2>
             <p>Need more time? <span className="time" onClick={() => setTimeLeft(timeLeft + 10)}>Add 10 More Seconds</span></p>
 
-            {/* {/TODO: fix this */}
-            {/* <button onClick={handleConfirm}>Pause Workout</button> */}
-            <button onClick={() => navigate("/")}>Exit Workout</button>
-   
-        
+            <div className="button_container">
+                <button onClick={() => navigate("/")}>Exit Workout</button>
+                <button onClick={pauseVideo}>Pause Video</button>
+                <button onClick={playVideo}>Resume Video</button>
+            </div>
+            
         </div>
-          
     );
-
-
 }

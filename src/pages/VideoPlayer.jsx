@@ -1,23 +1,44 @@
+import { useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 
-const VideoPlayer = () => {
+export default function VideoPlayer() {
+    const videoRef = useRef(null);
     const [searchParams] = useSearchParams();
-    const videoSrc = searchParams.get("videoSrc"); // Get video URL
-    const screenType = searchParams.get("screenType"); // wall or floor
+    const videoSrc = searchParams.get("videoSrc");
+
+    useEffect(() => {
+        const video = videoRef.current;
+        if (video) {
+            // Try to autoplay
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.warn("Autoplay blocked, waiting for user interaction:", error);
+                });
+            }
+        }
+
+        const handleMessage = (event) => {
+            if (!videoRef.current) return;
+            
+            if (event.data === "pause") {
+                videoRef.current.pause();
+            } else if (event.data === "play") {
+                videoRef.current.play();
+            }
+        };
+
+        window.addEventListener("message", handleMessage);
+        return () => window.removeEventListener("message", handleMessage);
+    }, []);
 
     return (
         <div>
-            <h1>Playing Video for {screenType} Projector</h1>
-            {videoSrc ? (
-                <video src={videoSrc} autoPlay controls style={{ width: "100%", height: "100vh" }} />
-            ) : (
-                <p>No video selected.</p>
-            )}
+            <video ref={videoRef} src={videoSrc} autoPlay controls />
         </div>
     );
-};
+}
 
-export default VideoPlayer;
 
 
 
