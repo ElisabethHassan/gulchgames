@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import WorkoutCard from "../components/WorkoutCard";
 import '../styles/WorkoutCard.css'
 
+// home page
 export default function Home() {
   const { updateForm } = useForm();
   const navigate = useNavigate();

@@ -1,5 +1,6 @@
 import '../styles/Home.css'
 
+// card component for the preview workout page
 export default function MovementCard({workout, descriptor, back_color, gif}){
     return (
         <div className={`previewcard ${back_color}`}>

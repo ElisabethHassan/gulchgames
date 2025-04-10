@@ -11,6 +11,7 @@ const ParticipantsPage = () => {
 
   const slideshowWindowRef = useRef(null);
 
+  // updates the slide based one the number of participants
   useEffect(() => {
     slideshowWindowRef.current = window.open('', 'SlideshowWindow');
   }, []);
@@ -21,26 +22,23 @@ const ParticipantsPage = () => {
     }
   }, [count]);
 
+  //increase up to 4 participants 
   // const increaseCount = () => setCount((prev) => prev + 1);
   const increaseCount = () => {
     if (count < 4) setCount((prev) => prev + 1);
   };
   
+  //decrease down to 1 particpant
   const decreaseCount = () => {
     if (count > 1) setCount((prev) => prev - 1); // Prevent negative numbers
   };
 
+  //saves information in form, navigate to next page
   const selectPlayers = () => { 
     updateForm({ players: count });
     navigate("/confirm"); // Go confirm page
 
   };
-
-//   const handleParticipantChange = (newCount) => {
-//   setParticipants(newCount); // assuming you're storing the count
-
-  
-// };
 
 
   return (

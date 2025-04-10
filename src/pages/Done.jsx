@@ -14,12 +14,11 @@ export default function Done() {
         "Warmup": { wall: "/videos/warmup_wall.mp4", floor: "/videos/warmup_floor.mp4" },
     };
 
+    //logic for user to pause the video
     const pauseVideo = () => {
         const wallWindow = window.open("", "WallProjector"); // Get the wall video window
         const floorWindow = window.open("", "FloorProjector"); // Get the floor video window
     
-        // if (wallWindow) wallWindow.postMessage("pause", "*");
-        // if (floorWindow) floorWindow.postMessage("pause", "*");
 
         if (wallWindow && !wallWindow.closed) {
             wallWindow.postMessage("pause", "*");
@@ -33,6 +32,7 @@ export default function Done() {
         }
     };
     
+    // logic for user to play the video
     const playVideo = () => {
         const wallWindow = window.open("", "WallProjector");
         const floorWindow = window.open("", "FloorProjector");
@@ -48,8 +48,6 @@ export default function Done() {
             console.warn("Window is not open.");
         }
     
-        // if (wallWindow) wallWindow.postMessage("play", "*");
-        // if (floorWindow) floorWindow.postMessage("play", "*");
     };
 
     useEffect(() => {
@@ -61,6 +59,8 @@ export default function Done() {
         }
     }, [timeLeft]);
 
+
+    // plays the workout videos
     const startWorkout = () => {
         const workoutVideos = videos[selectedWorkout];
         // const workoutVideos = videos["HIIT Tabata"];
@@ -87,18 +87,6 @@ export default function Done() {
                 );
             }
 
-
-            // window.open(
-            //     `/video?videoSrc=${workoutVideos.wall}&screenType=wall`,
-            //     "WallProjector",
-            //     "width=1920,height=1080,left=0,top=0"
-            // );
-
-            // window.open(
-            //     `/video?videoSrc=${workoutVideos.floor}&screenType=floor`,
-            //     "FloorProjector",
-            //     "width=1920,height=1080,left=1920,top=0"
-            // );
         } else {
             console.error("Workout video not found!");
         }

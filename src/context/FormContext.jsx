@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react";
 
 const FormContext = createContext();
 
+// saves form information
 export const FormProvider = ({ children }) => {
   const [formData, setFormData] = useState({
     workoutType: "",
@@ -13,18 +14,6 @@ export const FormProvider = ({ children }) => {
     setFormData((prev) => ({ ...prev, ...newData }));
   };
 
-
-  // // const { updateForm } = useForm();
-  // const navigate = useNavigate();
-
-//   const goToNextPage = (nextPage) => {
-//       // Send update to the projector
-//       if (window.wallWindow && !window.wallWindow.closed) {
-//           window.wallWindow.postMessage({ type: "updateSlide", page: nextPage }, "*");
-//       }
-
-//     navigate(nextPage);
-// };
 
   return (
     <FormContext.Provider value={{ formData, updateForm }}>

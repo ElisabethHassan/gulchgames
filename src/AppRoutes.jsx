@@ -13,9 +13,10 @@ export default function AppRoutes() {
   const location = useLocation();
   const [slideshowWindow, setSlideshowWindow] = useState(null);
 
+  // logic for the slideshow window to appear for wall
   useEffect(() => {
     if (window.name === "SlideshowWindow") return;
-    
+
     const newWindow = window.open(
       "/slideshow",
       "SlideshowWindow",
@@ -24,6 +25,7 @@ export default function AppRoutes() {
     setSlideshowWindow(newWindow);
   }, []);
 
+  // logic for slideshow window to update the slideshow based on wear the user is
   useEffect(() => {
     if (slideshowWindow) {
       slideshowWindow.postMessage(

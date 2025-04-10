@@ -9,6 +9,7 @@ const slides = {
     "/start": "/slides/Wall-Start-Timer.png",
 };
 
+// how the AppRoutes.jsx knows to switch the slides and which slide to switch to
 export default function Slideshow() {
     const [currentSlide, setCurrentSlide] = useState("/slides/Wall-1.png");
 
@@ -34,41 +35,3 @@ export default function Slideshow() {
         </div>
     );
 }
-
-
-/* 
-
-
-.slideshow img {
-    transition: opacity 0.5s ease-in-out;
-    opacity: 0;
-}
-
-.slideshow img.loaded {
-    opacity: 1;
-}
-
-in Slideshow.js
-
-
-useEffect(() => {
-    const handleMessage = (event) => {
-        if (event.data.type === "updateSlide") {
-            setCurrentSlide(slides[event.data.page] || "/slides/welcome_slide.png");
-
-            // Fade-in effect
-            setTimeout(() => {
-                document.querySelector(".slideshow img").classList.add("loaded");
-            }, 100);
-        }
-    };
-
-    window.addEventListener("message", handleMessage);
-    return () => window.removeEventListener("message", handleMessage);
-}, []);
-
-
-
-
-*/ 
-

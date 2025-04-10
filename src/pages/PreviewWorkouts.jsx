@@ -1,5 +1,6 @@
 import MovementCard from "../components/MovementCard"
 
+// page for user to preview workout before selecting
 export default function PreviewWorkout() {
 
     return (
