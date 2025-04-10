@@ -1,8 +1,8 @@
 import '../styles/Home.css'
 
-export default function MovementCard({workout, descriptor}){
+export default function MovementCard({workout, descriptor, back_color}){
     return (
-        <div className="previewcard">
+        <div className={`previewcard ${back_color}`}>
             <div className="gif">
                 <img src="#" alt="" />
             </div>

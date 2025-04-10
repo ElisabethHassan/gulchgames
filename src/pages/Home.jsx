@@ -1,6 +1,7 @@
 import { useForm } from "../context/FormContext";
 import { useNavigate } from "react-router-dom";
 import WorkoutCard from "../components/WorkoutCard";
+import '../styles/WorkoutCard.css'
 
 export default function Home() {
   const { updateForm } = useForm();
@@ -18,11 +19,11 @@ export default function Home() {
 
         <div className="workouts">
           <button onClick={() => selectWorkout("Warmup")}>
-            <WorkoutCard time="20 Minutes" title="Warmup" description="Warm up for your workout with full body and cardio moves!" style={{ backgroundColor: 'blue' }}/>
+            <WorkoutCard className="color1" timeButtonClass="color_second" time="20 Minutes" title="Warmup" description="Warm up for your workout with full body and cardio moves!" style={{ backgroundColor: 'blue' }}/>
           </button>
 
           <button onClick={() => selectWorkout("HIIT Tabata")}>
-            <WorkoutCard time="20 Minutes" title="HIIT Tabata" description="Get your heart rate up with an interval routine and 1-minute finisher!" />
+            <WorkoutCard time="20 Minutes" timeButtonClass="color_2" title="HIIT Tabata" description="Get your heart rate up with an interval routine and 1-minute finisher!" />
           </button>
         </div>
 

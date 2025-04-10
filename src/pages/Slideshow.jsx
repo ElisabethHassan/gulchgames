@@ -30,7 +30,7 @@ export default function Slideshow() {
 
     return (
         <div className="slideshow">
-            <img src={currentSlide} alt="Current Slide" style={{ width: "100vw", height: "100vh", objectFit: "cover" }} />
+            <img src={currentSlide} alt="Current Slide" />
         </div>
     );
 }
