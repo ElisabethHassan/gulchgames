@@ -14,6 +14,8 @@ export default function AppRoutes() {
   const [slideshowWindow, setSlideshowWindow] = useState(null);
 
   useEffect(() => {
+    if (window.name === "SlideshowWindow") return;
+    
     const newWindow = window.open(
       "/slideshow",
       "SlideshowWindow",

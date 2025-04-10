@@ -81,6 +81,18 @@ body {
     justify-content: baseline;
   }
 
+  .gif{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .gif img{
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+  }
+
 
   /*  CONFIRM PAGE CSS BELOW */
 

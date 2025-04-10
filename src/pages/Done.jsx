@@ -116,7 +116,7 @@ export default function Done() {
             <div className="button_container">
                 <button onClick={() => navigate("/")}>Exit Workout</button>
                 <button onClick={pauseVideo}>Pause Video</button>
-                <button onClick={playVideo}>Resume Video</button>
+                <button onClick={playVideo}>Start Video</button>
             </div>
             
         </div>

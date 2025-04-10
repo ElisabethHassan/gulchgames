@@ -1,10 +1,10 @@
 import '../styles/Home.css'
 
-export default function MovementCard({workout, descriptor, back_color}){
+export default function MovementCard({workout, descriptor, back_color, gif}){
     return (
         <div className={`previewcard ${back_color}`}>
             <div className="gif">
-                <img src="#" alt="" />
+                <img src={gif} alt="workout preview gif" />
             </div>
 
             <div className="groupText">
