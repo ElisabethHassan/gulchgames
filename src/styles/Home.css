@@ -1,12 +1,27 @@
+body {
+  background-color: #DAF3FF;
+  color: #000000;
+}
+
+.control-buttons button {
+  color: #000000;
+}
+
 .workouts {
     display: flex;
     flex-direction: row;
     gap: 3rem;
     justify-content: center;
   }
+
+  .workouts button {
+    background-color: #DAF3FF;
+    border: #518197;
+  }
   
   .wrapper {
     display: flex;
+    justify-content: center;
     flex-direction: column;
     gap: 2rem;
   }
@@ -144,3 +159,10 @@
     flex-direction: row;
     gap: 1.3rem;
   }
+
+/* LOADING CSS
+.logo-loader {
+  width: 100px;
+  height: auto;
+} */
+

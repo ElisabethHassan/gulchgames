@@ -1,5 +1,5 @@
 import { useForm } from "../context/FormContext";
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from "react-router-dom";
 import '../styles/Home.css'
 
@@ -7,10 +7,24 @@ import '../styles/Home.css'
 const ParticipantsPage = () => {
   const { updateForm } = useForm();
   const navigate = useNavigate();
-
   const [count, setCount] = useState(1) 
 
-  const increaseCount = () => setCount((prev) => prev + 1);
+  const slideshowWindowRef = useRef(null);
+
+  useEffect(() => {
+    slideshowWindowRef.current = window.open('', 'SlideshowWindow');
+  }, []);
+
+  useEffect(() => {
+    if (slideshowWindowRef.current) {
+      slideshowWindowRef.current.postMessage({ type: "updateParticipants", count }, "*");
+    }
+  }, [count]);
+
+  // const increaseCount = () => setCount((prev) => prev + 1);
+  const increaseCount = () => {
+    if (count < 4) setCount((prev) => prev + 1);
+  };
   
   const decreaseCount = () => {
     if (count > 1) setCount((prev) => prev - 1); // Prevent negative numbers
@@ -19,7 +33,15 @@ const ParticipantsPage = () => {
   const selectPlayers = () => { 
     updateForm({ players: count });
     navigate("/confirm"); // Go confirm page
+
   };
+
+//   const handleParticipantChange = (newCount) => {
+//   setParticipants(newCount); // assuming you're storing the count
+
+  
+// };
+
 
   return (
     <div className="wrapper_participants">
@@ -36,6 +58,10 @@ const ParticipantsPage = () => {
       </div>
 
       <button onClick={selectPlayers}>Next</button>
+      {/* <button onClick={() => {
+        selectPlayers; //save number in form
+        handleParticipantChange; //move to next slide on screen
+      }}>Next</button> */}
 
     </div>
   );

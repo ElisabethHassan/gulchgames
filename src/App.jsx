@@ -1,43 +1,22 @@
-import { useState } from 'react'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { FormProvider } from "./context/FormContext";
-import ConfirmSelection from "./pages/ConfirmSelection";
-import Participants from "./pages/Participants";
-import Done from './pages/Done';
-import PreviewWorkout from './pages/PreviewWorkouts';
-import VideoPlayer from "./pages/VideoPlayer"; // Import the Video Player page
-
-
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
+import AppRoutes from './AppRoutes'; 
 import './App.css'
-import Home from './pages/Home'
-// import MovementCard from './components/MovementCard'
-// import WorkoutCard from './components/WorkoutCard'
 
 function App() {
-  // const [count, setCount] = useState(0)
-  // const [select, setSelection] = useState (0)
-
-
   return (
-    <>
-  
-  <FormProvider>
+    <FormProvider>
       <Router>
-        {/* <Navbar /> */}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          {/* <Route path="/workout" element={<WorkoutPage />} /> */}
-          <Route path="/participants" element={<Participants/>} />
-          <Route path="/confirm" element={<ConfirmSelection />} />
-          <Route path="/start" element={<Done/>} />
-          <Route path="/previewWorkouts" element={<PreviewWorkout/>}/>
-          <Route path="/video" element={<VideoPlayer />} />
-          {/* <Route path="/final" element={<FinalVideoPage />} /> */}
-        </Routes>
+        <AppRoutes />
       </Router>
     </FormProvider>
+  );
+}
+
+export default App;
+
+
+
 
     {/* <Home></Home> */}
     {/* <MovementCard workout="Run Laps" descriptor="Full Body"></MovementCard> */}
@@ -71,8 +50,3 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p> */}
-    </>
-  )
-}
-
-export default App

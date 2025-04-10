@@ -9,7 +9,6 @@ export default function VideoPlayer() {
     useEffect(() => {
         const video = videoRef.current;
         if (video) {
-            // Try to autoplay
             const playPromise = video.play();
             if (playPromise !== undefined) {
                 playPromise.catch(error => {

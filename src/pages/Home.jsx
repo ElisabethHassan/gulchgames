@@ -18,7 +18,7 @@ export default function Home() {
 
         <div className="workouts">
           <button onClick={() => selectWorkout("Warmup")}>
-            <WorkoutCard time="20 Minutes" title="Warmup" description="Warm up for your workout with full body and cardio moves!" />
+            <WorkoutCard time="20 Minutes" title="Warmup" description="Warm up for your workout with full body and cardio moves!" style={{ backgroundColor: 'blue' }}/>
           </button>
 
           <button onClick={() => selectWorkout("HIIT Tabata")}>

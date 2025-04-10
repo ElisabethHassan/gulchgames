@@ -13,6 +13,14 @@
     border-radius: "8px"  */
 }
 
+/* .wcard :hover{
+    outline: 2px solid black;
+} */
+
+/* .color1{
+    background-color: ;
+} */
+
 #timeButton{
     background-color: #f1f1f1;
     border-radius: 2rem;
@@ -40,3 +48,4 @@
     text-align: left;
     font-size: 1.1rem;
 }
+
