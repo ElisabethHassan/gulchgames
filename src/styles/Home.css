@@ -1,5 +1,10 @@
+@import url("https://use.typekit.net/fky8joo.css");
+
 body {
   background-color: #DAF3FF;
+  font-family: "tt-commons-pro", sans-serif;
+  font-weight: 300;
+  font-style: normal;
   color: #000000;
 }
 
@@ -26,31 +31,50 @@ body {
     gap: 2rem;
   }
 
+  #preview_text {
+    margin-top: -2rem;
+    font-size: 1.2rem;
+  }
 
-  /* HOME END, PREVIEW CARD CSS */
+
+  /* HOME END, MOVEMENT CARD CSS BELOW*/
 
   .previewcard {
     width: 330px;
-    height: 180px;
+    height: 430px;
     background-color: #D9D9D9;
     border-radius: 1rem;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     text-align: left;
     margin: 2rem;
   }
   
   .gif {
-    width: 150px;
-    height: 150px;
+    width: 300px;
+    height: 300px;
     background-color: #F5F5F5;
     border-radius: .7rem;
     margin: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* .color_second {
+    background-color: #fbefe3;
+} */
+
+  .gif img{
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
   }
   
   .groupText p{
     margin-top: -1rem;
+    text-align: center;
   }
 
   .back_color_1 {
@@ -70,9 +94,29 @@ body {
 
   .workout_preview {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     gap: 5rem;
+  }
+
+
+  .scrolling {
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 16px;
+    padding: 1rem;
+    white-space: nowrap;
+    margin-top: -7rem;
+  }
+
+
+  .warmup_images{
+    display: flex;
+    flex-direction: row;
+    width: 350px;
+
   }
 
   .back_button{
@@ -81,17 +125,7 @@ body {
     justify-content: baseline;
   }
 
-  .gif{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .gif img{
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-  }
+ 
 
 
   /*  CONFIRM PAGE CSS BELOW */

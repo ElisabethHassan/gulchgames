@@ -18,6 +18,8 @@ export default function Home() {
       <div className="wrapper">
         <h1>Welcome to Gulch Games! <br /> Choose a workout to get started.</h1>
 
+        <p id="preview_text">Not sure which one to choose? <a href="/previewWorkouts">Preview Workout Programs</a></p>
+
         <div className="workouts">
           <button onClick={() => selectWorkout("Warmup")}>
             <WorkoutCard className="color1" timeButtonClass="color_second" time="20 Minutes" title="Warmup" description="Warm up for your workout with full body and cardio moves!" style={{ backgroundColor: 'blue' }}/>
@@ -28,7 +30,6 @@ export default function Home() {
           </button>
         </div>
 
-        <p>Not sure which one to choose? <a href="/previewWorkouts">Preview Workout Programs</a></p>
       </div>
     </>
   );

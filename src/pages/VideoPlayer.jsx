@@ -6,6 +6,7 @@ export default function VideoPlayer() {
     const [searchParams] = useSearchParams();
     const videoSrc = searchParams.get("videoSrc");
 
+    // logic for the video player
     useEffect(() => {
         const video = videoRef.current;
         if (video) {
@@ -17,6 +18,7 @@ export default function VideoPlayer() {
             }
         }
 
+        // logic for pausing and playing the video
         const handleMessage = (event) => {
             if (!videoRef.current) return;
             
