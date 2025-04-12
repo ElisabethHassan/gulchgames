@@ -4,7 +4,7 @@ import { useForm } from "../context/FormContext";
 import '../styles/Home.css';
 
 export default function Done() {
-    const [timeLeft, setTimeLeft] = useState(20);
+    const [timeLeft, setTimeLeft] = useState(3);
     const navigate = useNavigate();
     const { formData } = useForm();
     const selectedWorkout = formData.workoutType;
@@ -97,14 +97,17 @@ export default function Done() {
     return (    
         <div className="wrapper_done">
             <h1>All set!</h1>
-            <p>Your workout will begin in 20 seconds. <br/>Get to a starting bubble before the timer runs out.</p>
-            <h2 className="timeleft">{timeLeft}</h2>
-            <p>Need more time? <span className="time" onClick={() => setTimeLeft(timeLeft + 10)}>Add 10 More Seconds</span></p>
+            <p className="large">Your workout will load on the wall in {timeLeft} seconds. <br/>Once loaded, click start to begin the workout.</p>
+            {/* <h2 className="timeleft">{timeLeft}</h2> */}
+            <button className="large" onClick={playVideo}>Start Workout</button>
+            <p>Don't worry, you will have 20 seconds <br/>to get to your spot after you click start.</p>
+
+            {/* <p>Need more time? <span className="time" onClick={() => setTimeLeft(timeLeft + 10)}>Add 10 More Seconds</span></p> */}
 
             <div className="button_container">
                 <button onClick={() => navigate("/")}>Exit Workout</button>
-                <button onClick={pauseVideo}>Pause Video</button>
-                <button onClick={playVideo}>Start Video</button>
+                <button onClick={pauseVideo}>Pause Workout</button>
+                <button onClick={playVideo}>Resume Workout</button>
             </div>
             
         </div>

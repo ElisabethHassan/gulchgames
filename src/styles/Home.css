@@ -204,12 +204,17 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1.2rem;
   }
 
   .button_container {
     display: flex;
     flex-direction: row;
     gap: 1.3rem;
+  }
+
+  .large {
+    font-size: 1.2rem;
   }
 
 /* LOADING CSS
