@@ -7,6 +7,8 @@ import Done from './pages/Done';
 import PreviewWorkout from './pages/PreviewWorkouts';
 import VideoPlayer from './pages/VideoPlayer';
 import Slideshow from './pages/Slideshow';
+import VideoTest from './pages/VideoTest';
+import WorkoutPlayer from './pages/WorkoutPlayer';
 
 
 export default function AppRoutes() {
@@ -44,6 +46,10 @@ export default function AppRoutes() {
       <Route path="/previewWorkouts" element={<PreviewWorkout />} />
       <Route path="/video" element={<VideoPlayer />} />
       <Route path="/slideshow" element={<Slideshow />} />
+      <Route path="/videotest" element={<VideoTest/>} />
+      <Route path="/workoutplayer" element={<WorkoutPlayer/>} />
+
+      
 
     </Routes>
   );

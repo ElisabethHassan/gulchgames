@@ -223,3 +223,65 @@ body {
   height: auto;
 } */
 
+/* VIDEO GIF CSS BELOW */
+
+#exercise_gif {
+  width: 420px;
+  height: 420px;
+  object-fit: cover;
+  /* background-color: #f3f1f1; */
+  border-radius: 50rem;
+}
+
+.wrapper_gif {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.wrapper_video {
+  display: flex;
+}
+
+.sec_timer {
+  width: 15vw;
+  height: 100vh;
+}
+
+.sec_timer video {
+  width: 170px;
+  height: 170px;
+  object-fit: cover;
+}
+
+.sec_1 {
+  width: 20vw;
+  height: 100vh;
+}
+
+.sec_main {
+  width: 60vw;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* WORKOUT PLAYER */
+
+.workout-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.workoutimage{
+  width: 70vw;
+}
+
+.timer_containter{
+  width: 30vw;
+  margin-left: -12rem;
+  /* display: flex; */
+  /* justify-content: left; */
+}
