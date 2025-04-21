@@ -16,80 +16,125 @@ const workouts = [
     { name: "Jumping Jacks", gif: "/gifs/Jumping-Jack.gif"}
 ];
 
+const workoutMessages = [
+  "You're doing great!",
+  "Keep pushing!",
+  "Stay strong!",
+  "You got this!",
+  "Nice form!",
+  "Breathe and push!",
+  "Power through!"
+];
+
+const restMessages = [
+  "Nice work! Take a breather.",
+  "Grab some water!",
+  "Rest up – next one’s coming!",
+  "Shake it out!",
+  "Let those muscles chill.",
+  "You're crushing it!"
+];
+
+
 export default function WorkoutPlayer() {
   const [index, setIndex] = useState(0);
   const [isRest, setIsRest] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [remainingTime, setRemainingTime] = useState(20000);
+  const [message, setMessage] = useState("");
+
 
   const startTimestampRef = useRef(null);
+  const remainingTimeRef = useRef(remainingTime);
   const timerRef = useRef(null);
   const videoRef = useRef();
 
   const duration = isRest ? 10000 : 20000;
 
+  const restartWorkout = () => {
+    clearTimeout(timerRef.current); // clear current timer
+    setIndex(0);
+    setIsRest(false);
+    setIsFinished(false);
+    setIsPaused(false);
+    setRemainingTime(20000); // reset to full workout duration
+    remainingTimeRef.current = 20000;
+    startTimestampRef.current = null;
+  
+    // Optionally restart the video
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play(); // don't auto-play immediately
+    }
+  };
+  
+
+
+
+  //lets the done page control the pause and play
+  useEffect(() => {
+    const handleMessage = (event) => {
+      if (event.data === "pause") {
+        if (!isPaused) togglePause();
+      } else if (event.data === "play") {
+        if (isPaused) togglePause();
+      } else if (event.data === "restart") {
+        restartWorkout(); 
+      }
+    };
+  
+    window.addEventListener("message", handleMessage);
+  
+    return () => {
+      window.removeEventListener("message", handleMessage);
+    };
+  }, [isPaused]);
+
+  //keeps track if the remaining time is for the rest or the current workout
+  useEffect(() => {
+    remainingTimeRef.current = remainingTime;
+  }, [remainingTime]);
+
+  //plays the timer videos
   useEffect(() => {
     if (isFinished || isPaused) return;
 
-    // Start time tracking
+    // Start time tracking to handle pause and start
     startTimestampRef.current = Date.now();
 
     // Reset and play the correct timer video
     if (videoRef.current) {
-      videoRef.current.currentTime = (duration - remainingTime) / 1000;
+      videoRef.current.currentTime = (duration - remainingTimeRef.current) / 1000;
       videoRef.current.play();
     }
-    // if (videoRef.current) {
-    //   videoRef.current.load(); // Reload the video src
-    //   videoRef.current.play();
-    // }
 
-  //   const timer = setTimeout(() => {
-  //     if (isRest) {
-  //       if (index + 1 < workouts.length) {
-  //         setIndex(index + 1);
-  //         setIsRest(false);
-  //       } else {
-  //         setIsFinished(true);
-  //       }
-  //     } else {
-  //       setIsRest(true);
-  //     }
-  //   }, isRest ? 10000 : 20000); // 10s rest or 20s workout
+    // pick a random encouraging message
+  const getRandomMessage = () => {
+    const list = isRest ? restMessages : workoutMessages;
+    return list[Math.floor(Math.random() * list.length)];
+  };
 
-  //   return () => clearTimeout(timer);
-  // }, [index, isRest, isPaused, isFinished]);
+  setMessage(getRandomMessage());
 
-
-  timerRef.current = setTimeout(() => {
-    if (isRest) {
-      if (index + 1 < workouts.length) {
-        setIndex(index + 1);
-        setIsRest(false);
-        setRemainingTime(20000);
+    timerRef.current = setTimeout(() => {
+      if (isRest) {
+        if (index + 1 < workouts.length) {
+          setIndex(index + 1);
+          setIsRest(false);
+          setRemainingTime(20000);
+        } else {
+          setIsFinished(true);
+        }
       } else {
-        setIsFinished(true);
+        setIsRest(true);
+        setRemainingTime(10000);
       }
-    } else {
-      setIsRest(true);
-      setRemainingTime(10000);
-    }
-  }, remainingTime);
+    }, remainingTimeRef.current);
 
-  return () => clearTimeout(timerRef.current);
-}, [index, isRest, isPaused, remainingTime, isFinished]);
+    return () => clearTimeout(timerRef.current);
+  }, [index, isRest, isPaused, isFinished]);
 
-  // const togglePause = () => {
-  //   setIsPaused((prev) => !prev);
-
-  //   if (!isPaused) {
-  //     clearTimeout(timerRef.current);
-  //     if (videoRef.current) videoRef.current.pause();
-  //   } else {
-  //     // resume manually by changing isPaused, which triggers useEffect again
-  //   }
-  // };
 
   const togglePause = () => {
     if (!isPaused) {
@@ -109,21 +154,12 @@ export default function WorkoutPlayer() {
     }
   };
 
+    
+
   if (isFinished) {
     return (
       <div className="finished">
         <h1>🎉 Workout Complete! 🎉</h1>
-
-        {/* Optional: add confetti animation */}
-        {/* <video
-          ref={videoRef}
-          width="400"
-          height="150"
-          muted
-          autoPlay
-          playsInline
-          src="/videos/confetti.mp4"
-        /> */}
       </div>
     );
   }
@@ -133,42 +169,36 @@ export default function WorkoutPlayer() {
 
   return (
     <div className="workout-container">
-        <button onClick={togglePause} style={{ margin: '1rem', padding: '0.5rem 1rem' }}>
+        {/* <button onClick={togglePause} style={{ margin: '1rem', padding: '0.5rem 1rem' }}>
         {isPaused ? "Resume" : "Pause"}
-      </button>
+      </button> */}
 
         <div className="workoutimage">
-        {isRest ? (
-        <>
-          <h2>Rest</h2>
-          {nextWorkout && (
-            <>
-              <p>Next: {nextWorkout.name}</p>
-              <VideoGif {...nextWorkout} />
-            </>
-          )}
-        </>
-      ) : (
-        <VideoGif {...currentWorkout} />
-      )}
+          {isRest ? (
+          <>
+            <h2>Rest</h2>
+            {nextWorkout && (
+              <>
+                <p>Next: {nextWorkout.name}</p>
+                <VideoGif {...nextWorkout} />
+              </>
+            )}
+          </>
+        ) : (
+          <VideoGif {...currentWorkout} />
+        )}
+
+          <div className="encouragement">
+            <p style={{ fontSize: '1.25rem', marginTop: '1rem', fontWeight: 'bold' }}>{message}</p>
+          </div>
         </div>
       
       
 
 
       <div className="timer_containter">
-      <video
-        key={isRest ? "rest" : "workout"}
-        ref={videoRef}
-        width="400"
-        height="150"
-        muted
-        autoPlay
-        playsInline
-        src={isRest ? "/videos/10-sec.mp4" : "/videos/20-sec.mp4"}
-      />
-        {/* <video
-          key={isRest ? "rest" : "workout"} // forces reload on switch
+        <video
+          key={isRest ? "rest" : "workout"}
           ref={videoRef}
           width="400"
           height="150"
@@ -176,7 +206,7 @@ export default function WorkoutPlayer() {
           autoPlay
           playsInline
           src={isRest ? "/videos/10-sec.mp4" : "/videos/20-sec.mp4"}
-        /> */}
+        />
       </div>
     </div>
   );
