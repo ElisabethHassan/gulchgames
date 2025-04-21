@@ -1,7 +1,13 @@
 import { useEffect, useState, useRef } from 'react';
 import VideoGif from "../components/VideoGif"
+import Confetti from 'react-confetti';
+import ConfettiExplosion from 'react-confetti-explosion';
+// import { useWindowSize } from 'react-use';
 import '../styles/Home.css'
 
+// const { width, height } = useWindowSize();
+const width = 1080;
+const height = 1080;
 
 const workouts = [
     { name: "Arm Circles", gif: "/gifs/Arm-Circles.gif"},
@@ -22,8 +28,7 @@ const workoutMessages = [
   "Stay strong!",
   "You got this!",
   "Nice form!",
-  "Breathe and push!",
-  "Power through!"
+  "Almost there!"
 ];
 
 const restMessages = [
@@ -31,7 +36,6 @@ const restMessages = [
   "Grab some water!",
   "Rest up – next one’s coming!",
   "Shake it out!",
-  "Let those muscles chill.",
   "You're crushing it!"
 ];
 
@@ -159,7 +163,28 @@ export default function WorkoutPlayer() {
   if (isFinished) {
     return (
       <div className="finished">
-        <h1>🎉 Workout Complete! 🎉</h1>
+        {/* <Confetti width={width} height={height} /> */}
+        
+        <div className='confetti_explosion'>
+          <ConfettiExplosion
+            // className='confetti_explosion'
+            width={width}
+            height={height}
+            duration={7200}
+            colors={['#E46B91', '#FBAF63', '#F2655B', '#5D80C0']}
+            force={0.8}
+            
+          />
+          </div>
+        {/* <ConfettiExplosion 
+        width={width}
+        height={height}
+        duration={7200}
+        colors={['#E46B91', '#FBAF63', '#F2655B', '#5D80C0']}
+        force={0.8}
+        /> */}
+        <h1> You crushed it!</h1>
+        <h3>Take some time to stretch and cool down</h3>
       </div>
     );
   }
@@ -185,11 +210,14 @@ export default function WorkoutPlayer() {
             )}
           </>
         ) : (
+          <>
+          <h2>{currentWorkout.name}</h2>
           <VideoGif {...currentWorkout} />
+        </>
         )}
 
           <div className="encouragement">
-            <p style={{ fontSize: '1.25rem', marginTop: '1rem', fontWeight: 'bold' }}>{message}</p>
+            <h2 style={{ fontSize: '2.3rem', marginTop: '1rem', fontWeight: 'bold' }}>{message}</h2>
           </div>
         </div>
       

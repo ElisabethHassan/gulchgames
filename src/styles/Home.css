@@ -230,7 +230,7 @@ body {
   height: 420px;
   object-fit: cover;
   /* background-color: #f3f1f1; */
-  border-radius: 50rem;
+  /* border-radius: 50rem; */
 }
 
 .wrapper_gif {
@@ -284,4 +284,11 @@ body {
   margin-left: -12rem;
   /* display: flex; */
   /* justify-content: left; */
+}
+
+.confetti_explosion{
+  position: 'absolute';
+  top: '50%';
+  left: '50%';
+  transform: 'translate(-50%, -50%)';
 }

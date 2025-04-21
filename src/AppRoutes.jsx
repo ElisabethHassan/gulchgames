@@ -22,7 +22,7 @@ export default function AppRoutes() {
     const newWindow = window.open(
       "/slideshow",
       "SlideshowWindow",
-      "width=1920,height=1080,left=0,top=0"
+      "width=1080,height=1080,left=0,top=0"
     );
     setSlideshowWindow(newWindow);
   }, []);

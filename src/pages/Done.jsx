@@ -64,7 +64,7 @@ export default function Done() {
         <div className="wrapper_done">
             <h1>All set!</h1>
             {/* <p className="large">Your workout will load on the wall in {timeLeft} seconds. <br/>Once loaded, click start to begin the workout.</p> */}
-            <p className="large">Your workout will load on the wall in 20 seconds. <br/>Get to a starting bubble before the timer runs out.</p>
+            <p className="large">Your workout will load on the wall in 10 seconds. <br/>Get to a starting bubble before the timer runs out.</p>
             <h2 className="timeleft">{timeLeft}</h2>
             {/* <button className="large" onClick={playVideo}>Start Workout</button>
             <p>Don't worry, you will have 20 seconds <br/>to get to your spot after you click start.</p> */}
@@ -76,7 +76,7 @@ export default function Done() {
                 <button onClick={() => navigate("/")}>Exit Workout</button>
                 <button onClick={pauseWorkout}>Pause Workout</button>
                 <button onClick={resumeWorkout}>Resume Workout</button>
-                <button onClick={restartWorkout}>Restart Workout</button>
+                {/* <button onClick={restartWorkout}>Restart Workout</button> */}
             </div>
             
         </div>
