@@ -8,6 +8,8 @@ export default function Done() {
     const navigate = useNavigate();
     const { formData } = useForm();
     const selectedWorkout = formData.workoutType;
+    localStorage.setItem("workoutType", formData.workoutType); 
+
 
     const videos = {
         "HIIT Tabata": { wall: "/videos/hiit_wall.mp4", floor: "/videos/hiit_floor.mp4" },

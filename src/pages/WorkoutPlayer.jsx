@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import VideoGif from "../components/VideoGif"
-import Confetti from 'react-confetti';
+// import Confetti from 'react-confetti';
+import { useForm } from "../context/FormContext";
+import { useNavigate } from "react-router-dom";
 import ConfettiExplosion from 'react-confetti-explosion';
 // import { useWindowSize } from 'react-use';
 import '../styles/Home.css'
@@ -9,18 +11,7 @@ import '../styles/Home.css'
 const width = 1080;
 const height = 1080;
 
-const workouts = [
-    { name: "Arm Circles", gif: "/gifs/Arm-Circles.gif"},
-    { name: "Side Reaches", gif: "/gifs/OH-Side-Reaches.gif"},
-    { name: "Frankensteins", gif: "/gifs/Frankensteins.gif"},
-    { name: "Lunge + Twist", gif: "/gifs/Side-Lunge.gif"},
-    { name: "Butt Kicks", gif: "/gifs/Butt-Kicks.gif"},
-    { name: "Hip Openers", gif: "/gifs/Open-the-Gate.gif"},
-    { name: "Hip Closers", gif: "/gifs/Open-the-Gate.gif"},
-    { name: "Arm Swings", gif: "/gifs/Arm-Swings.gif"},
-    { name: "Standing Twists", gif: "/gifs/Standing-Twists.gif"},
-    { name: "Jumping Jacks", gif: "/gifs/Jumping-Jack.gif"}
-];
+
 
 const workoutMessages = [
   "You're doing great!",
@@ -35,8 +26,9 @@ const restMessages = [
   "Nice work! Take a breather.",
   "Grab some water!",
   "Rest up – next one’s coming!",
-  "Shake it out!",
-  "You're crushing it!"
+  "High five a partner!",
+  "You're crushing it!",
+  "Complement a partner!"
 ];
 
 
@@ -56,6 +48,36 @@ export default function WorkoutPlayer() {
 
   const duration = isRest ? 10000 : 20000;
 
+  const workouts = [
+    { name: "Run Laps", gif: "/gifs/Run.gif"},
+    { name: "Toe Touches", gif: "/gifs/Toe-Touch.gif"},
+    { name: "Arm Circles", gif: "/gifs/Arm-Circles.gif"},
+    { name: "Side Reaches", gif: "/gifs/OH-Side-Reaches.gif"},
+    { name: "Frankensteins", gif: "/gifs/Frankensteins.gif"},
+    { name: "Lunge + Twist", gif: "/gifs/Side-Lunge.gif"},
+    { name: "Butt Kicks", gif: "/gifs/Butt-Kicks.gif"},
+    { name: "Hip Openers", gif: "/gifs/Open-the-Gate.gif"},
+    { name: "Hip Closers", gif: "/gifs/Open-the-Gate.gif"},
+    { name: "Arm Swings", gif: "/gifs/Arm-Swings.gif"},
+    { name: "Standing Twists", gif: "/gifs/Standing-Twists.gif"},
+    { name: "Jumping Jacks", gif: "/gifs/Jumping-Jack.gif"}
+];
+
+const tabata_workouts = [
+    // { name: "Run Laps", gif: "/gifs/Run.gif"},
+    { name: "Air Squat", gif: "/gifs/Squat.gif"},
+    { name: "High Knees", gif: "/gifs/High-Knees.gif"},
+    { name: "Jump Lunges", gif: "/gifs/Jump-Lunge.gif"},
+    { name: "Push Ups", gif: "/gifs/Push-Up.gif"},
+    { name: "Jumping Jacks", gif: "/gifs/Jumping-Jack.gif"},
+    { name: "Side Lunges", gif: "/gifs/Side-Lunge.gif"},
+    { name: "Burpees", gif: "/gifs/Burpee.gif"},
+    { name: "Plank", gif: "/gifs/plank.png"},
+    { name: "Punch Jacks", gif: "/gifs/Punch-Jacks.gif"},
+    { name: "Burpees", gif: "/gifs/Burpee.gif"},
+    { name: "Running", gif: "/gifs/Run.gif"}
+];
+
   const restartWorkout = () => {
     clearTimeout(timerRef.current); // clear current timer
     setIndex(0);
@@ -73,7 +95,9 @@ export default function WorkoutPlayer() {
     }
   };
   
-
+  //gets the workout that the user selected
+  const selectedWorkout = localStorage.getItem("workoutType") || "Warmup";
+    // console.log("formData:", formData);
 
 
   //lets the done page control the pause and play
@@ -189,8 +213,15 @@ export default function WorkoutPlayer() {
     );
   }
 
-  const currentWorkout = workouts[index];
-  const nextWorkout = workouts[index + 1];
+  if (!selectedWorkout) {
+    return <div>Loading workout...</div>;
+  }
+  const workoutSelect = selectedWorkout === "HIIT Tabata" ? tabata_workouts : workouts
+
+  // const currentWorkout = workouts[index];
+  // const nextWorkout = workouts[index + 1];
+  const currentWorkout = workoutSelect[index];
+  const nextWorkout = workoutSelect[index + 1];
 
   return (
     <div className={isRest ? "workout-container rest" : "workout-container"}>
