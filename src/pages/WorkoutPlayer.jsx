@@ -193,7 +193,7 @@ export default function WorkoutPlayer() {
   const nextWorkout = workouts[index + 1];
 
   return (
-    <div className="workout-container">
+    <div className={isRest ? "workout-container rest" : "workout-container"}>
         {/* <button onClick={togglePause} style={{ margin: '1rem', padding: '0.5rem 1rem' }}>
         {isPaused ? "Resume" : "Pause"}
       </button> */}
@@ -201,11 +201,11 @@ export default function WorkoutPlayer() {
         <div className="workoutimage">
           {isRest ? (
           <>
-            <h2>Rest</h2>
+            <h1>Rest</h1>
             {nextWorkout && (
               <>
-                <p>Next: {nextWorkout.name}</p>
-                <VideoGif {...nextWorkout} />
+                <h3>Next: {nextWorkout.name}</h3>
+                {/* <VideoGif {...nextWorkout} /> */}
               </>
             )}
           </>
@@ -227,9 +227,8 @@ export default function WorkoutPlayer() {
       <div className="timer_containter">
         <video
           key={isRest ? "rest" : "workout"}
+          className={isRest ? "timer-video rest" : "timer-video workout"}
           ref={videoRef}
-          width="400"
-          height="150"
           muted
           autoPlay
           playsInline
