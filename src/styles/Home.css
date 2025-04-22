@@ -228,7 +228,7 @@ body {
 #exercise_gif {
   width: 420px;
   height: 420px;
-  object-fit: cover;
+  object-fit: contain;
   /* background-color: #f3f1f1; */
   /* border-radius: 50rem; */
 }
@@ -273,21 +273,27 @@ body {
 .workout-container{
   display: flex;
   flex-direction: row;
+  /* justify-items: center; */
 }
 
-.workout-container.rest{
+/* .workout-container.rest{
   display: flex;
   flex-direction: column;
   align-items: center;
-}
+} */
 
 .workoutimage{
   width: 70vw;
+  /* object-fit: cover; */
 }
 
 .timer_containter{
   width: 30vw;
   margin-left: -12rem;
+  position: fixed;
+  right: 2rem;
+  top: 2rem;
+  /* position: absolute; */
   /* display: flex; */
   /* justify-content: left; */
 }
@@ -305,8 +311,23 @@ body {
   height: 150px;
 }
 
-.timer-video.rest {
+/* .timer-video.rest {
   width: 600px;
   height: 300px;
   margin-left: -2.5rem;
+} */
+
+
+.workout_text {
+  margin-top: -5rem;
+  font-weight: 'bold';
+  color: #5D80C0;
+  width: 80vw;
+  font-size: 7.7rem;
+  /* display: flex; */
+  /* align-items: center; */
 }
+
+/* .image_gif{
+  object-fit: cover;
+} */

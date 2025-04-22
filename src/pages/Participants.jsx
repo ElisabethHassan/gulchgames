@@ -43,6 +43,7 @@ const ParticipantsPage = () => {
 
   return (
     <div className="wrapper_participants">
+      <a className="back_button" href="/">Back</a>
       <h1>How Many Participants?</h1>
 
       <div className="container_particpants">

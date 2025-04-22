@@ -24,7 +24,7 @@ export default function ConfirmSelection() {
       {/* Display the selected workout dynamically */}
       <div className="selected-workout">
         {formData.workoutType === "Warmup" ? (
-          <WorkoutCard time="20 Minutes" title="Warmup" description="Warm up for your workout with full body and cardio moves!" timeButtonClass="color_second"/>
+          <WorkoutCard className="color1" time="20 Minutes" title="Warmup" description="Warm up for your workout with full body and cardio moves!" timeButtonClass="color_second"/>
         ) : formData.workoutType === "HIIT Tabata" ? (
           <WorkoutCard time="20 Minutes" title="HIIT Tabata" description="Get your heart rate up with an interval routine and 1-minute finisher!" timeButtonClass="color_2"/>
         ) : (

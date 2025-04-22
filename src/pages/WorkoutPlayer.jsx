@@ -14,12 +14,13 @@ const height = 1080;
 
 
 const workoutMessages = [
-  "You're doing great!",
-  "Keep pushing!",
-  "Stay strong!",
-  "You got this!",
-  "Nice form!",
-  "Almost there!"
+  // "howdy"
+  // "You're doing great!",
+  // "Keep pushing!",
+  // "Stay strong!",
+  // "You got this!",
+  // "Nice form!",
+  // "Almost there!"
 ];
 
 const restMessages = [
@@ -64,7 +65,7 @@ export default function WorkoutPlayer() {
 ];
 
 const tabata_workouts = [
-    // { name: "Run Laps", gif: "/gifs/Run.gif"},
+    { name: "Run Laps", gif: "/gifs/Run.gif"},
     { name: "Air Squat", gif: "/gifs/Squat.gif"},
     { name: "High Knees", gif: "/gifs/High-Knees.gif"},
     { name: "Jump Lunges", gif: "/gifs/Jump-Lunge.gif"},
@@ -72,7 +73,7 @@ const tabata_workouts = [
     { name: "Jumping Jacks", gif: "/gifs/Jumping-Jack.gif"},
     { name: "Side Lunges", gif: "/gifs/Side-Lunge.gif"},
     { name: "Burpees", gif: "/gifs/Burpee.gif"},
-    { name: "Plank", gif: "/gifs/plank.png"},
+    { name: "Plank", gif: "/gifs/plank2.svg"},
     { name: "Punch Jacks", gif: "/gifs/Punch-Jacks.gif"},
     { name: "Burpees", gif: "/gifs/Burpee.gif"},
     { name: "Running", gif: "/gifs/Run.gif"}
@@ -147,7 +148,7 @@ const tabata_workouts = [
 
     timerRef.current = setTimeout(() => {
       if (isRest) {
-        if (index + 1 < workouts.length) {
+        if (index + 1 < workouts.length-1) {
           setIndex(index + 1);
           setIsRest(false);
           setRemainingTime(20000);
@@ -188,7 +189,8 @@ const tabata_workouts = [
     return (
       <div className="finished">
         {/* <Confetti width={width} height={height} /> */}
-        
+        <h1>You crushed it!</h1>
+        <h3>Take some time to stretch and cool down</h3>
         <div className='confetti_explosion'>
           <ConfettiExplosion
             // className='confetti_explosion'
@@ -197,7 +199,6 @@ const tabata_workouts = [
             duration={7200}
             colors={['#E46B91', '#FBAF63', '#F2655B', '#5D80C0']}
             force={0.8}
-            
           />
           </div>
         {/* <ConfettiExplosion 
@@ -207,8 +208,7 @@ const tabata_workouts = [
         colors={['#E46B91', '#FBAF63', '#F2655B', '#5D80C0']}
         force={0.8}
         /> */}
-        <h1> You crushed it!</h1>
-        <h3>Take some time to stretch and cool down</h3>
+        
       </div>
     );
   }
@@ -224,32 +224,38 @@ const tabata_workouts = [
   const nextWorkout = workoutSelect[index + 1];
 
   return (
-    <div className={isRest ? "workout-container rest" : "workout-container"}>
+    <div className={ "workout-container"}>
         {/* <button onClick={togglePause} style={{ margin: '1rem', padding: '0.5rem 1rem' }}>
         {isPaused ? "Resume" : "Pause"}
       </button> */}
 
+      
+
         <div className="workoutimage">
+          <div className="encouragement">
+            <h2 style={{ fontSize: '1.5rem', marginTop: '1rem' }}>{message}</h2>
+          </div>
+
+
           {isRest ? (
           <>
-            <h1>Rest</h1>
+            <h1 style={{ fontSize: '9.7rem', marginTop: "1.4rem", marginBottom: "",  color: "#5D80C0" }} >Rest</h1>
             {nextWorkout && (
               <>
-                <h3>Next: {nextWorkout.name}</h3>
+                <h3 style={{ fontSize: '1.7rem', marginTop: "-3rem" }} >Next: {nextWorkout.name}</h3>
                 {/* <VideoGif {...nextWorkout} /> */}
               </>
             )}
           </>
         ) : (
           <>
-          <h2>{currentWorkout.name}</h2>
-          <VideoGif {...currentWorkout} />
+          
+          <VideoGif className="image_gif" {...currentWorkout} />
+          <h2 className='workout_text'>{currentWorkout.name}</h2>
         </>
         )}
 
-          <div className="encouragement">
-            <h2 style={{ fontSize: '2.3rem', marginTop: '1rem', fontWeight: 'bold' }}>{message}</h2>
-          </div>
+          
         </div>
       
       
@@ -258,12 +264,16 @@ const tabata_workouts = [
       <div className="timer_containter">
         <video
           key={isRest ? "rest" : "workout"}
-          className={isRest ? "timer-video rest" : "timer-video workout"}
+          // className={"timer-video workout"}
           ref={videoRef}
           muted
           autoPlay
           playsInline
           src={isRest ? "/videos/10-sec.mp4" : "/videos/20-sec.mp4"}
+          style={{
+            width: "400px",
+            height: "150px"
+          }}
         />
       </div>
     </div>
