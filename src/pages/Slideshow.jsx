@@ -3,7 +3,7 @@ import '../styles/Home.css'
 
 
 const slides = {
-    "/participants": "/slides/Wall-Participants-1.png",
+    "/participants": "/slides/Wall-Participants-1.svg",
     "/workout": "/slides/Wall-1.png",
     "/confirm": "/slides/Wall-Begin.png",
     "/start": "/slides/Wall-Start-Timer.png",
@@ -20,9 +20,12 @@ export default function Slideshow() {
                 setCurrentSlide(slides[event.data.page] || "/slides/Wall-1.png");
             } else if (event.data.type === "updateParticipants") {
                 const count = event.data.count;
-                const participantSlide = `/slides/Wall-Participants-${(count)}.png`;
+                const participantSlide = `/slides/Wall-Participants-${(count)}.svg`;
                 setCurrentSlide(participantSlide);
-              } 
+              } else if (event.data.type === "exitWorkout"){
+                navigate("/slideshow");
+                setCurrentSlide("/slides/Wall-1.png")
+              }
         };
 
         window.addEventListener("message", handleMessage);

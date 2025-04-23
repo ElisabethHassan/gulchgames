@@ -8,7 +8,7 @@ import ConfettiExplosion from 'react-confetti-explosion';
 import '../styles/Home.css'
 
 // const { width, height } = useWindowSize();
-const width = 1080;
+const width = 1980;
 const height = 1080;
 
 
@@ -51,17 +51,17 @@ export default function WorkoutPlayer() {
 
   const workouts = [
     { name: "Run Laps", gif: "/gifs/Run.gif"},
-    { name: "Toe Touches", gif: "/gifs/Toe-Touch.gif"},
-    { name: "Arm Circles", gif: "/gifs/Arm-Circles.gif"},
-    { name: "Side Reaches", gif: "/gifs/OH-Side-Reaches.gif"},
-    { name: "Frankensteins", gif: "/gifs/Frankensteins.gif"},
-    { name: "Lunge + Twist", gif: "/gifs/Side-Lunge.gif"},
-    { name: "Butt Kicks", gif: "/gifs/Butt-Kicks.gif"},
-    { name: "Hip Openers", gif: "/gifs/Open-the-Gate.gif"},
-    { name: "Hip Closers", gif: "/gifs/Open-the-Gate.gif"},
-    { name: "Arm Swings", gif: "/gifs/Arm-Swings.gif"},
-    { name: "Standing Twists", gif: "/gifs/Standing-Twists.gif"},
-    { name: "Jumping Jacks", gif: "/gifs/Jumping-Jack.gif"}
+    // { name: "Toe Touches", gif: "/gifs/Toe-Touch.gif"},
+    // { name: "Arm Circles", gif: "/gifs/Arm-Circles.gif"},
+    // { name: "Side Reaches", gif: "/gifs/OH-Side-Reaches.gif"},
+    // { name: "Frankensteins", gif: "/gifs/Frankensteins.gif"},
+    // { name: "Lunge + Twist", gif: "/gifs/Side-Lunge.gif"},
+    // { name: "Butt Kicks", gif: "/gifs/Butt-Kicks.gif"},
+    // { name: "Hip Openers", gif: "/gifs/Open-the-Gate.gif"},
+    // { name: "Hip Closers", gif: "/gifs/Open-the-Gate.gif"},
+    // { name: "Arm Swings", gif: "/gifs/Arm-Swings.gif"},
+    // { name: "Standing Twists", gif: "/gifs/Standing-Twists.gif"},
+    // { name: "Jumping Jacks", gif: "/gifs/Jumping-Jack.gif"}
 ];
 
 const tabata_workouts = [
@@ -99,6 +99,21 @@ const tabata_workouts = [
   //gets the workout that the user selected
   const selectedWorkout = localStorage.getItem("workoutType") || "Warmup";
     // console.log("formData:", formData);
+
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleMessage = (event) => {
+      if (event.data.type === 'exitWorkout') {
+        console.log("Exit workout message received in WorkoutPlayer");
+        navigate('/slideshow'); // or wherever the default screen is
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [navigate]);
 
 
   //lets the done page control the pause and play
@@ -196,9 +211,9 @@ const tabata_workouts = [
             // className='confetti_explosion'
             width={width}
             height={height}
-            duration={7200}
+            duration={6200}
             colors={['#E46B91', '#FBAF63', '#F2655B', '#5D80C0']}
-            force={0.8}
+            force={1.5}
           />
           </div>
         {/* <ConfettiExplosion 

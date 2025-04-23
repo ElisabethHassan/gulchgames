@@ -16,6 +16,21 @@ export default function Done() {
         "Warmup": { wall: "/videos/warmup_wall.mp4", floor: "/videos/warmup_floor.mp4" },
     };
 
+    const handleExitWorkout = () => {
+      // Change route in main window
+      navigate("/")
+    
+      // Send message to the slideshow window
+      const slideshowWindow = window.open('', 'SlideshowWindow');
+      if (slideshowWindow) {
+        slideshowWindow.postMessage(
+          { type: "exitWorkout", page: "/" }, // use your default page path
+          "*"
+        );
+        console.log("exit workout message has been received ")
+      }
+    };
+
     //logic for done to control workoutplayer time (pause and play)
     const pauseWorkout = () => {
         const slideshowWindow = window.open("", "SlideshowWindow");
@@ -75,7 +90,7 @@ export default function Done() {
             <p>Need more time? <span className="time" onClick={() => setTimeLeft(timeLeft + 10)}>Add 10 More Seconds</span></p>
 
             <div className="button_container">
-                <button onClick={() => navigate("/")}>Exit Workout</button>
+                <button onClick={handleExitWorkout}>Exit Workout</button>
                 <button onClick={pauseWorkout}>Pause Workout</button>
                 <button onClick={resumeWorkout}>Resume Workout</button>
                 {/* <button onClick={restartWorkout}>Restart Workout</button> */}
