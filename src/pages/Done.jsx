@@ -53,6 +53,8 @@ export default function Done() {
         }
        
       }
+
+      
       
 
     //causes the workout player to play when the timer ends 
@@ -69,7 +71,7 @@ export default function Done() {
                 );
             } else {
                 window.slideshowWindow.focus();
-                window.slideshowWindow.postMessage({ type: "updateSlide", page: "/workoutplayer" }, "*");
+                window.slideshowWindow.postMessage({ type: "startWorkout", page: "/workoutplayer" }, "*");
             }
             // startWorkout(); // Start videos when timer hits 0
         }

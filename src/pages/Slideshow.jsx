@@ -6,7 +6,7 @@ const slides = {
     "/participants": "/slides/Wall-Participants-1.svg",
     "/workout": "/slides/Wall-1.png",
     "/confirm": "/slides/Wall-Begin.png",
-    "/start": "/slides/Wall-Start-Timer.png",
+    "/start": "/slides/Wall-Begin.png",
 };
 
 // how the AppRoutes.jsx knows to switch the slides and which slide to switch to
@@ -23,8 +23,10 @@ export default function Slideshow() {
                 const participantSlide = `/slides/Wall-Participants-${(count)}.svg`;
                 setCurrentSlide(participantSlide);
               } else if (event.data.type === "exitWorkout"){
-                navigate("/slideshow");
+                // navigate("/slideshow");
                 setCurrentSlide("/slides/Wall-1.png")
+              } else if (event.data.type === "startWorkout") {
+                window.location.href = "/workoutplayer";
               }
         };
 

@@ -51,17 +51,17 @@ export default function WorkoutPlayer() {
 
   const workouts = [
     { name: "Run Laps", gif: "/gifs/Run.gif"},
-    // { name: "Toe Touches", gif: "/gifs/Toe-Touch.gif"},
-    // { name: "Arm Circles", gif: "/gifs/Arm-Circles.gif"},
-    // { name: "Side Reaches", gif: "/gifs/OH-Side-Reaches.gif"},
-    // { name: "Frankensteins", gif: "/gifs/Frankensteins.gif"},
-    // { name: "Lunge + Twist", gif: "/gifs/Side-Lunge.gif"},
-    // { name: "Butt Kicks", gif: "/gifs/Butt-Kicks.gif"},
-    // { name: "Hip Openers", gif: "/gifs/Open-the-Gate.gif"},
-    // { name: "Hip Closers", gif: "/gifs/Open-the-Gate.gif"},
-    // { name: "Arm Swings", gif: "/gifs/Arm-Swings.gif"},
-    // { name: "Standing Twists", gif: "/gifs/Standing-Twists.gif"},
-    // { name: "Jumping Jacks", gif: "/gifs/Jumping-Jack.gif"}
+    { name: "Toe Touches", gif: "/gifs/Toe-Touch.gif"},
+    { name: "Arm Circles", gif: "/gifs/Arm-Circles.gif"},
+    { name: "Side Reaches", gif: "/gifs/OH-Side-Reaches.gif"},
+    { name: "Frankensteins", gif: "/gifs/Frankensteins.gif"},
+    { name: "Lunge + Twist", gif: "/gifs/Side-Lunge.gif"},
+    { name: "Butt Kicks", gif: "/gifs/Butt-Kicks.gif"},
+    { name: "Hip Openers", gif: "/gifs/Open-the-Gate.gif"},
+    { name: "Hip Closers", gif: "/gifs/Open-the-Gate.gif"},
+    { name: "Arm Swings", gif: "/gifs/Arm-Swings.gif"},
+    { name: "Standing Twists", gif: "/gifs/Standing-Twists.gif"},
+    { name: "Jumping Jacks", gif: "/gifs/Jumping-Jack.gif"}
 ];
 
 const tabata_workouts = [
