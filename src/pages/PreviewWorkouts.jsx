@@ -5,6 +5,8 @@ import '../styles/WorkoutCard.css'
 // page for user to preview workout before selecting
 export default function PreviewWorkout() {
 
+    //TODO: Make sure the workouts are visibile on one screen for user, fix button visibility
+
     return (
         <>
         <div className="wrapper_preview">

@@ -9,7 +9,7 @@ const slides = {
     "/start": "/slides/Wall-Begin.png",
 };
 
-// how the AppRoutes.jsx knows to switch the slides and which slide to switch to
+// how the AppRoutes.jsx knows to switch the slides and which slide to switch to for projector screen
 export default function Slideshow() {
     const [currentSlide, setCurrentSlide] = useState("/slides/Wall-1.png");
 

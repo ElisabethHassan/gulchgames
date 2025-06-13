@@ -1,13 +1,10 @@
 import { useEffect, useState, useRef } from 'react';
 import VideoGif from "../components/VideoGif"
-// import Confetti from 'react-confetti';
 import { useForm } from "../context/FormContext";
 import { useNavigate } from "react-router-dom";
 import ConfettiExplosion from 'react-confetti-explosion';
-// import { useWindowSize } from 'react-use';
 import '../styles/Home.css'
 
-// const { width, height } = useWindowSize();
 const width = 1980;
 const height = 1080;
 
@@ -32,7 +29,7 @@ const restMessages = [
   "Complement a partner!"
 ];
 
-
+// logic that causes the workouts to play
 export default function WorkoutPlayer() {
   const [index, setIndex] = useState(0);
   const [isRest, setIsRest] = useState(false);
@@ -41,12 +38,11 @@ export default function WorkoutPlayer() {
   const [remainingTime, setRemainingTime] = useState(20000);
   const [message, setMessage] = useState("");
 
-
+  // variables used for pausing/restarting workout
   const startTimestampRef = useRef(null);
   const remainingTimeRef = useRef(remainingTime);
   const timerRef = useRef(null);
   const videoRef = useRef();
-
   const duration = isRest ? 10000 : 20000;
 
   const workouts = [
@@ -103,6 +99,7 @@ const tabata_workouts = [
 
   const navigate = useNavigate();
 
+  //logic to exit the workout and go back to the original screen
   useEffect(() => {
     const handleMessage = (event) => {
       if (event.data.type === 'exitWorkout') {
@@ -216,13 +213,7 @@ const tabata_workouts = [
             force={1.5}
           />
           </div>
-        {/* <ConfettiExplosion 
-        width={width}
-        height={height}
-        duration={7200}
-        colors={['#E46B91', '#FBAF63', '#F2655B', '#5D80C0']}
-        force={0.8}
-        /> */}
+       
         
       </div>
     );
@@ -233,19 +224,12 @@ const tabata_workouts = [
   }
   const workoutSelect = selectedWorkout === "HIIT Tabata" ? tabata_workouts : workouts
 
-  // const currentWorkout = workouts[index];
-  // const nextWorkout = workouts[index + 1];
+
   const currentWorkout = workoutSelect[index];
   const nextWorkout = workoutSelect[index + 1];
 
   return (
     <div className={ "workout-container"}>
-        {/* <button onClick={togglePause} style={{ margin: '1rem', padding: '0.5rem 1rem' }}>
-        {isPaused ? "Resume" : "Pause"}
-      </button> */}
-
-      
-
         <div className="workoutimage">
           <div className="encouragement">
             <h2 style={{ fontSize: '1.5rem', marginTop: '1rem' }}>{message}</h2>

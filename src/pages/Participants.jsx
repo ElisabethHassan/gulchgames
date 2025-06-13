@@ -57,10 +57,7 @@ const ParticipantsPage = () => {
       </div>
 
       <button onClick={selectPlayers}>Next</button>
-      {/* <button onClick={() => {
-        selectPlayers; //save number in form
-        handleParticipantChange; //move to next slide on screen
-      }}>Next</button> */}
+      
 
     </div>
   );

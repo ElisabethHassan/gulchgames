@@ -12,20 +12,6 @@ export default function WorkoutCard({ time, title, description, className = "", 
     );
 }
 
-// export default function WorkoutCard({time, title, description}){
-//     return (
-//         <div className="wcard">
-            
-//             <p id="timeButton">{time}</p>
-
-//             <div className='bottom'>
-//                 <h2>{title}</h2>
-//                 <p>{description}</p>
-//             </div>
-//         </div>
-//     );
-// }
-
 
 //  SHORTCUTS
 //         shift + option -> to copy something over 

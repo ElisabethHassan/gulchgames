@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import WorkoutCard from "../components/WorkoutCard";
 import '../styles/Home.css'
 
+//CODE FOR CONFIRM PAGE -- where user confirms the choices they made was correct
 export default function ConfirmSelection() {
   const { formData } = useForm();
   const navigate = useNavigate();
@@ -10,9 +11,7 @@ export default function ConfirmSelection() {
   const handleConfirm = () => {
     navigate("/start"); // Move to the all set page
   };
-  // const handleConfirm = () => {
-  //   navigate("/video"); // Move to the video player page
-  // };
+ 
   
   return (
     <div className="wrapper_confirm">
@@ -32,12 +31,10 @@ export default function ConfirmSelection() {
         )}
       </div>
 
-      {/* Display number of players */}
-      {/* <p><strong>Players:</strong> {formData.players}</p> */}
+     
 
       <button onClick={handleConfirm}>Looks good!</button>
       <p><b>There's a mistake? </b><a href="/">Go back</a></p>
-      {/* <button onClick={() => navigate("/")}>Go Back</button> */}
     </div>
   );
 }

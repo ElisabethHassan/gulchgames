@@ -4,21 +4,21 @@ import { useForm } from "../context/FormContext";
 import '../styles/Home.css';
 
 export default function Done() {
-    const [timeLeft, setTimeLeft] = useState(10);
+    const [timeLeft, setTimeLeft] = useState(10); //controls the number of seconds user has to get to start
     const navigate = useNavigate();
     const { formData } = useForm();
     const selectedWorkout = formData.workoutType;
-    localStorage.setItem("workoutType", formData.workoutType); 
+    localStorage.setItem("workoutType", formData.workoutType); //stores the workout choice locally
 
 
-    const videos = {
-        "HIIT Tabata": { wall: "/videos/hiit_wall.mp4", floor: "/videos/hiit_floor.mp4" },
-        "Warmup": { wall: "/videos/warmup_wall.mp4", floor: "/videos/warmup_floor.mp4" },
-    };
+    //BACKUP CODE INCASE WE WANT TO USE VIDEOS INSTEAD OF GIFS/CODE
+    // const videos = {
+    //     "HIIT Tabata": { wall: "/videos/hiit_wall.mp4", floor: "/videos/hiit_floor.mp4" },
+    //     "Warmup": { wall: "/videos/warmup_wall.mp4", floor: "/videos/warmup_floor.mp4" },
+    // };
 
     const handleExitWorkout = () => {
-      // Change route in main window
-      navigate("/")
+      navigate("/") // Change route in main window
     
       // Send message to the slideshow window
       const slideshowWindow = window.open('', 'SlideshowWindow');
@@ -45,15 +45,6 @@ export default function Done() {
           slideshowWindow.postMessage("play", "*");
         }
       };
-
-      const restartWorkout = () => {
-        const slideshowWindow = window.open("", "SlideshowWindow");
-        if (slideshowWindow && !slideshowWindow.closed) {
-          slideshowWindow.postMessage("restart", "*");
-        }
-       
-      }
-
       
       
 
@@ -73,7 +64,7 @@ export default function Done() {
                 window.slideshowWindow.focus();
                 window.slideshowWindow.postMessage({ type: "startWorkout", page: "/workoutplayer" }, "*");
             }
-            // startWorkout(); // Start videos when timer hits 0
+          
         }
     }, [timeLeft]);
 
