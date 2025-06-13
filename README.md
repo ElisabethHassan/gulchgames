@@ -1,6 +1,6 @@
 # Gulch Games
 
-This code is for Gulch Games, a modern take on the gamification of exercise to promote wellness and mental health through projection mapping. This code is contains the source code for the website that allows users to choose a workout, select players, and start a workout. The user will then have 20 seconds to go to their starting position before the workout begins. Once the code is run, two windows will be launched. One window reflects the user window and the other reflects the projection window. 
+Gulch Games is a modern take on the gamification of exercise, aiming to promote wellness and mental health through projection mapping. This repository contains the source code for the website that allows users to choose a workout, select players, and start a workout. The user will then have 20 seconds to go to their starting position before the workout begins. Once the code is run, two windows will be launched. One window reflects the user window and the other reflects the projection window. 
 
 ## Features 
 
